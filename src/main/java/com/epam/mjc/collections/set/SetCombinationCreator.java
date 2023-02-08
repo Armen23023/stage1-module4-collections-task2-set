@@ -5,18 +5,21 @@ import java.util.*;
 public class SetCombinationCreator {
     public Set<String> createSetCombination(Set<String> firstSet, Set<String> secondSet, Set<String> thirdSet) {
         Set<String> set = new HashSet<String>();
-        String next = null;
-        while (secondSet.iterator().hasNext()){
-             next = secondSet.iterator().next();
+        Iterator<String> iterator = secondSet.iterator();
+        while (iterator.hasNext()){
+            String next = iterator.next();
             if (firstSet.contains(next))
             {
                 set.add(next);
             }
         }
-        while (thirdSet.iterator().hasNext()){
-             next = thirdSet.iterator().next();
-            if (!firstSet.contains(next) && !secondSet.contains(next)){
-                set.add(next);
+        Iterator<String> it = thirdSet.iterator();
+        while (it.hasNext()){
+            String next = it.next();
+            if (!firstSet.contains(next) ){
+                if (!secondSet.contains(next)){
+                    set.add(next);
+                }
             }
         }
         return set;
